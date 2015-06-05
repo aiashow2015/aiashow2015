@@ -7,3 +7,11 @@ git submodule update
 # Modify the FIRMWARE_DIR in beta-cube-library to point to right place
 sed -i .bak -e "s@^FIRMWARE_DIR =.*@FIRMWARE_DIR = `pwd`/spark-firmware/firmware/@" \
   beta-cube-library/makefile 
+
+# Now commit the change in the submodule so that git will stop barking.
+pushd beta-cube-library &&
+    git add makefile &&
+    git commit -a -m 'Fixed up makefile' &&
+    rm makefile.bak
+popd
+
