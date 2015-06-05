@@ -1,5 +1,7 @@
-build/
 *~
+*.bin
+
+build/
 
 beta-cube-library/
 spark-firmware/
