@@ -12,6 +12,8 @@ sed -i .bak -e "s@^FIRMWARE_DIR =.*@FIRMWARE_DIR = `pwd`/spark-firmware/firmware
 pushd beta-cube-library &&
     git add makefile &&
     git commit -a -m 'Fixed up makefile' &&
-    rm makefile.bak
-popd
+    rm makefile.bak && 
+    popd &&
+    git commit -a -m 'Fixed up makefile in submodule'
+
 
