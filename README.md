@@ -52,6 +52,7 @@ brew update
 brew upgrade
 brew install git dfu-util node
 brew install gcc-arm-none-eabi
+npm install -g particle-cli
 </code></pre>
 
 ### Clone the repo and run the setup script.
