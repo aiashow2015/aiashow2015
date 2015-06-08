@@ -63,6 +63,7 @@ cd aiashow2015
 ./setup  # This script installs the firmware repos and mods them for our environment.
 </code></pre>
 
+## How to build and deploy cool demos on the cube.
 
 ### Finding the unique id of your cube.
 
@@ -72,6 +73,10 @@ _coming soon_
 
 _coming soon_
 
+
+## How to use the simulator to develop demos at superspeed!
+
+_coming soon_
 
 
 ## Appendix: Installing Homebrew in your homedir
