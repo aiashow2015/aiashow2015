@@ -15,15 +15,15 @@ Before doing this step, make sure that you don't already have Yosemite installed
 
 The easiest way to upgrade to Yosemite is using the AppStore.
 
-> 1. Start the AppStore. (From Finder, hit Cmd-Shift-A. AppStore will be in that window. Double-click the icon.)
-> 2. In the Search box, type "Yosemite." You'll see it listed as "OS X Yosemite." Install/upgrade it by following the instructions.
-> 3. Go have some coffee. This will take a while.
+1. Start the AppStore. (From Finder, hit Cmd-Shift-A. AppStore will be in that window. Double-click the icon.)
+2. In the Search box, type "Yosemite." You'll see it listed as "OS X Yosemite." Install/upgrade it by following the instructions.
+3. Go have some coffee. This will take a while.
 
 ### Install XCode
 
-> 1. Once that Yosemite upgrade has completed, go back to the AppStore and search for XCode. 
-> 2. Install the newest version of XCode that you see in the list. 
-> 3. Go have a snack.
+1. Once that Yosemite upgrade has completed, go back to the AppStore and search for XCode. 
+2. Install the newest version of XCode that you see in the list. 
+3. Go have a snack.
 
 When you come back from your snack, XCode should be installed. You should be sure to run XCode at least once before moving to the next step. Agree to the licencing stuff. When it finally says "Welcome to XCode," you should be all set.
 
@@ -33,15 +33,15 @@ Homebrew is a Mac OS "package manager." This just means that it will do all of t
 
 Homebrew works best when you install it in the default location, /usr/local. But sometimes. you might not have write permission there, so you can install it in your home directory too. If you can, though, put it in the default place. It's much more efficient, since you can use the pre-built binaries that Homebrew makes available. 
 
-> 2. Open the Terminal app. (Cmd-Shift-A. Look for Terminal. Double-click.) If you're going to be doing a lot of this, I recommend keeping Terminal in the Dock so that you can find it quickly next time.
-> 1. Go to http://brew.sh.
-> 3. At the top of the Homebrew page, there is a single line of code that begins with 'ruby -e'. Copy that. (This will install into /usr/local. If you need it somewhere else, check out the next appendix at the bottom of these instructions.)
-> 4. Then paste it into the Terminal window and hit return. 
-> 5. When this is done, type 'brew' and hit return. If it prints out an "Example usage:" message, you can skip the rest of this. If it says "command not found," then proceed with the next steps. 
-> 6. In the terminal, type (or copy/paste) the following:
+2. Open the Terminal app. (Cmd-Shift-A. Look for Terminal. Double-click.) If you're going to be doing a lot of this, I recommend keeping Terminal in the Dock so that you can find it quickly next time.
+1. Go to http://brew.sh.
+3. At the top of the Homebrew page, there is a single line of code that begins with 'ruby -e'. Copy that. (This will install into /usr/local. If you need it somewhere else, check out the next appendix at the bottom of these instructions.)
+4. Then paste it into the Terminal window and hit return. 
+5. When this is done, type 'brew' and hit return. If it prints out an "Example usage:" message, you can skip the rest of this. If it says "command not found," then proceed with the next steps. 
+6. In the terminal, type (or copy/paste) the following:
 > <pre><code>echo 'export PATH=/usr/local/bin:$PATH' >> ~/.bash_profile</code></pre>
-> 7. Now, close that Terminal window, and open a new one. 
-> 8. Type 'brew' and hit return. Make sure you get the usage message. Otherwise, you've done something wrong.
+7. Now, close that Terminal window, and open a new one. 
+8. Type 'brew' and hit return. Make sure you get the usage message. Otherwise, you've done something wrong.
 
 ### Now, install the dependencies using homebrew
 
