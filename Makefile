@@ -12,9 +12,6 @@ FIRMWARE_DIR = $(SELF_DIR)spark-firmware/firmware/
 
 LIB_SOURCES = $(wildcard $(LIB_DIR)*)
 
-all:
-	echo $(LIB_SOURCES)
-
 mos.bin: $(LIB_SOURCES)
 	$(eval PROGRAM_NAME=$(notdir $(basename $@)))
 	echo $(PROGRAM_NAME)
