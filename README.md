@@ -25,6 +25,8 @@ The easiest way to upgrade to Yosemite is using the AppStore.
 > 2. Install the newest version of XCode that you see in the list. 
 > 3. Go have a snack.
 
+When you come back from your snack, XCode should be installed. You should be sure to run XCode at least once before moving to the next step. Agree to the licencing stuff. When it finally says "Welcome to XCode," you should be all set.
+
 ### Install Homebrew
 
 Homebrew is a Mac OS "package manager." This just means that it will do all of the annoying parts of installing a whole slew of free software from the internet. There are several of them. Homebrew is my favorite. (You can use any one that you want as long as you install all if the right packages.)
