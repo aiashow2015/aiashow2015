@@ -41,7 +41,22 @@ Homebrew works best when you install it in the default location, /usr/local. But
 > 7. Now, close that Terminal window, and open a new one. 
 > 8. Type 'brew' and hit return. Make sure you get the usage message. Otherwise, you've done something wrong.
 
-### Now, install the dependencies using homebrew. 
+### Now, install the dependencies using homebrew
 
-> 1. This is easy.
-> <pre><code>brew install git</code></pre>
+In this step, you will use your new Homebrew installation to install (almost) all of the dependencies which you need.
+
+<pre><code>brew tap PX4/homebrew-px4
+brew update
+brew upgrade
+brew install git dfu-util node
+brew install gcc-arm-none-eabi
+</code></pre>
+
+### Clone the repo and run the setup script.
+
+We are getting so close. Now we just have to copy down the aiashow source code and set it up with the basic firmware installation. This will allow us to build our own versions of the firmware that run our demos.
+
+<pre><code>git clone git@github.com:aiashow2015/aiashow2015.git
+cd aiashow2015
+./setup  # This script installs the firmware repos and mods them for our environment.
+</code></pre>
