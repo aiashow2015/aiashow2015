@@ -62,3 +62,18 @@ We are getting so close. Now we just have to copy down the aiashow source code a
 cd aiashow2015
 ./setup  # This script installs the firmware repos and mods them for our environment.
 </code></pre>
+
+
+### Finding the unique id of your cube.
+
+_coming soon_
+
+### Building/installing some code.
+
+_coming soon_
+
+
+
+## Appendix: Installing Homebrew in your homedir
+
+_coming soon_
