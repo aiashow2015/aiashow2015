@@ -59,7 +59,7 @@ npm install -g particle-cli
 
 We are getting so close. Now we just have to copy down the aiashow source code and set it up with the basic firmware installation. This will allow us to build our own versions of the firmware that run our demos.
 
-<pre><code>git clone git@github.com:aiashow2015/aiashow2015.git
+<pre><code>git clone https://github.com/aiashow2015/aiashow2015.git
 cd aiashow2015
 ./setup  # This script installs the firmware repos and mods them for our environment.
 </code></pre>
