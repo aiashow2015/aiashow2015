@@ -62,7 +62,10 @@ We are getting so close. Now we just have to copy down the aiashow source code a
 <pre><code>git clone https://github.com/aiashow2015/aiashow2015.git
 cd aiashow2015
 ./setup  # This script installs the firmware repos and mods them for our environment.
+make
 </code></pre>
+
+Assuming that everything ran without error, you should now see a file called 'mos.bin' in that directory. (Type 'ls' to see the files in your directory.) Congratulations! You've just built your first firmware for the cube!
 
 ## How to build and deploy cool demos on the cube.
 
