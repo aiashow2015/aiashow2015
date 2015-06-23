@@ -57,13 +57,13 @@ public:
       int randType = rand()%1000;
       int len = sizeof(descs)/sizeof(*descs);
       for (int j = 0; j < len; ++j) {
-	const StarDesc* desc = descs[j];
-	if (randType < desc->percentage || j == len - 1) {
-	  stars[i].desc = desc;
-	  break;
-	} else {
-	  randType -= desc->percentage;
-	}	
+        const StarDesc* desc = descs[j];
+        if (randType < desc->percentage || j == len - 1) {
+          stars[i].desc = desc;
+          break;
+        } else {
+          randType -= desc->percentage;
+        }       
       }
     }
 
@@ -78,7 +78,7 @@ public:
     for (int i = 0; i < NUM_STARS; ++i) {
       star* s = &stars[i];
       if (twinkle()) {
-	s->twinkle = !s->twinkle;
+        s->twinkle = !s->twinkle;
       }
       const Color* color = s->twinkle ? s->desc->darkColor : s->desc->color;
       cube.setVoxel(s->x, s->y, s->z, *color);
@@ -98,6 +98,93 @@ private:
 
   star stars[NUM_STARS];
 };  
+
+class Cylon : public Task {
+public:
+  Cylon(long delayMillis) : Task("cylon", delayMillis) {
+  }
+  
+  virtual void setup(long startTimeMillis) {
+    Task::setup(startTimeMillis);
+
+    currcell = 0;
+    for (int i = 0; i < sizeof(cells) / sizeof(*cells); ++i) {
+      cells[i].x = i;
+      cells[i].intensity = i < 5 ? i : 0;
+    }
+    lastElapsed = 0;
+    cube.background(black);
+  }
+
+  virtual void loop(long elapsed, double percentDone) {
+    bool stepping = false;
+    if (elapsed - lastElapsed > STEP_SIZE) {
+      lastElapsed = elapsed;
+      stepping = true;
+    }
+
+    if (stepping) {
+      if (currcell <= 0) {
+        direction = 1;
+      } else if (currcell >= 7) {
+        direction = -1;
+      }
+      currcell += direction;
+      if (currcell < 0) {
+        currcell = 0;
+      } else if (currcell > 7) {
+        currcell = 7;
+      }
+    }
+
+    for (int i = 0; i < sizeof(cells) / sizeof(*cells); ++i) {
+      cell* c = &cells[i];
+      if (stepping) {
+	if (i == currcell) {
+	  c->intensity = 6;
+	} else {
+	  if (c->intensity > 0) {
+          c->intensity--;
+	  }
+	}
+      }
+      cube.setVoxel(c->x, 5, 7, *reds[c->intensity]);
+    }
+    cube.show();
+  }
+
+private:
+  static const int STEP_SIZE = 2;
+  
+  static const Color red0;
+  static const Color red1;
+  static const Color red2;
+  static const Color red3;
+  static const Color red4;
+  static const Color red5;
+  
+  static const Color* reds[];
+  struct cell {
+    int x;
+    int intensity;
+  };
+  struct cell cells[8];
+  int currcell;
+  int direction = 1;
+  long lastElapsed;
+};
+
+const Color Cylon::red0(0x11, 0, 0);
+const Color Cylon::red1(0x33, 0, 0);
+const Color Cylon::red2(0x55, 0, 0);
+const Color Cylon::red3(0x99, 0, 0);
+const Color Cylon::red4(0xcc, 0, 0);
+const Color Cylon::red5(0xff, 0, 0);
+const Color* Cylon::reds[]= {
+  &black, &red0, &red1, &red2, &red3, &red4, &red5
+};
+
+
 
 class RedLight : public Task {
 public:
@@ -246,6 +333,7 @@ public:
 };
 
 Task* tasks[] = {
+  new Cylon(5000),
   new StarField(6000),
     // new BlueInCenter(200),
     // new BlueLine(300),
