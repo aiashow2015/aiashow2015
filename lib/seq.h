@@ -49,7 +49,8 @@ public:
     Seq(Task** tasks, bool repeat) : tasks_(tasks), curr_idx(0), repeat_(repeat) {}
 
   void setup();
-  void loop();
+  // returns true if the loop is still running.
+  bool loop();
 
  private:
   // Disallow copy ctors

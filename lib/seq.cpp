@@ -11,9 +11,9 @@ void Seq::setup() {
 int j = 0;
 int tn = 0;
 
-void Seq::loop() {
+bool Seq::loop() {
   if (!curr_task) {
-    return;
+    return false;
   }
 
   long elapsed = curr_task->elapsedMillis();
@@ -34,8 +34,9 @@ void Seq::loop() {
   }
 
   if (!curr_task) {
-    return;
+    return false;
   }
 
   curr_task->loop(elapsed, (double)elapsed / (double)duration);
+  return true;
 }
