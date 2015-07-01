@@ -45,7 +45,7 @@ class Task {
 
 class Seq {
 public:
-    Seq(Task** tasks) : tasks_(tasks), curr_idx(0), repeat_(false) {}
+    Seq(Task** tasks) : tasks_(tasks), curr_idx(0), repeat_(true) {}
     Seq(Task** tasks, bool repeat) : tasks_(tasks), curr_idx(0), repeat_(repeat) {}
 
   void setup();

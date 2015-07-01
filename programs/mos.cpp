@@ -4,9 +4,10 @@
 #include "application.h"
 #include "beta-cube-library.h"
 #include "seq.h"
+#include "fireworks.h"
 
-void prepRocket();
-void fireworks_loop();
+//void prepRocket();
+//void fireworks_loop();
 
 Cube cube;
 Seq* seq;
@@ -214,6 +215,102 @@ const Color* Cylon::reds[]= {
   &black, &red0, &red1, &red2, &red3, &red4, &red5
 };
 
+class Fireworks : public Task {
+public:
+  Fireworks(long delayMillis)
+    : Task("Fireworks", delayMillis),
+      rocketColor(255, 150, 100) {}
+
+  virtual void setup(long startTimeMillis) {
+    Task::setup(startTimeMillis);
+    prepRocket();
+  }
+
+  virtual void loop(long elapsed, double percent) {
+    cube.background(black);  //clear the cube for each frame
+
+    if(showRocket)
+      cube.shell(rocketX, rocketY, rocketZ,.05, rocketColor);
+
+    if(exploded)
+      {
+        Color fireworksColor=Color(r,g,b);
+
+        //make the color fade to black as the firework gets larger
+        if(r>1)
+          r-=2;
+        if(g>1)
+          g-=2;
+        if(b>1)
+          b-=2;
+
+        cube.shell(rocketX, rocketY, rocketZ,radius, fireworksColor);
+        radius+=speed;  //the sphere gets bigger
+      }
+
+    //if the rocket hasn't exploded yet, increment its position
+    if(showRocket)
+      {
+        rocketX+=xInc;
+        rocketY+=yInc;
+        rocketZ+=zInc;
+      }
+
+    //if our firework gets too large, launch another rocket to another point
+    if(radius>maxSize)
+      prepRocket();
+
+    if(abs(distance(centerX,centerY,centerZ,rocketX, rocketY, rocketZ)-radius)<2)
+      {
+        showRocket=false;
+        exploded=true;
+      }
+
+    cube.show();  //send the data to the cube
+  }
+
+private:
+  float distance(float x, float y, float z, float x1, float y1, float z1) {
+    return(sqrt(pow(x-x1, 2) + pow(y-y1, 2) + pow(z-z1, 2)));
+  }
+
+  void prepRocket() {
+    radius=0;
+    centerX=rand()%8;
+    centerY=rand()%8;
+    centerZ=rand()%8;
+    r=rand()%brightness;
+    g=rand()%brightness;
+    b=rand()%brightness;
+    launchX=rand()%8;
+    launchZ=rand()%8;
+    rocketX=launchX;
+    rocketY=0;
+    rocketZ=launchZ;
+    launchTime=15+rand()%25;
+    xInc=(centerX-rocketX)/launchTime;
+    yInc=(centerY-rocketY)/launchTime;
+    zInc=(centerZ-rocketZ)/launchTime;
+    showRocket=true;
+    exploded=false;
+    speed=0.20;
+    maxSize=8;
+  }
+
+  int centerX, centerY, centerZ;
+  int launchX, launchZ;
+  Color rocketColor;
+  int r,g,b;
+  int brightness=100;
+  float radius=0;
+  float speed;
+  bool showRocket;
+  bool exploded;
+  float xInc, yInc, zInc;
+  float rocketX, rocketY, rocketZ;
+  float launchTime;
+  int maxSize;
+};
 
 
 class RedLight : public Task {
@@ -363,17 +460,18 @@ public:
 };
 
 Task* tasks[] = {
-  new Cylon(5000 / 5),
-  new StarField(6000 / 5),
-    // new BlueInCenter(200),
-    // new BlueLine(300),
-    // new BlueSquare(150),
-    // new DelayTask(150),
-    // new BlueCube(150),
+  //  new Cylon(5000 / 5),
+  //  new StarField(6000 / 5),
+  //  new Fireworks(10000),
+   new BlueInCenter(200),
+   new BlueLine(400),
+   new BlueSquare(400),
+   new DelayTask(150),
+   new BlueCube(300),
     // new YellowLight(100),
-    // new DelayTask(50),
-    // new WhiteCube(300),
-    // new ClearTask(10),
+   new DelayTask(150),
+   new WhiteCube(400),
+     new ClearTask(100),
 
     // The nullptr means that the sequence is done.
     // Don't forget it, or it will crash!!!
@@ -384,15 +482,15 @@ void setup() {
   cube.begin();
   cube.background(black);
 
-  seq = new Seq(tasks, false);
+  seq = new Seq(tasks);
   seq->setup();
 
-  prepRocket();
+  //  prepRocket();
 }
 
 void loop() {
   if (!seq->loop()) {
-    fireworks_loop();
+    //    fireworks_loop();
   }
 }
 
@@ -400,90 +498,90 @@ void loop() {
 /* FIREWORKS STUFF */
 /* ------------------------------------------------------------------------ */
 
-int centerX, centerY, centerZ;
-int launchX, launchZ;
-Color rocketColor(255,150,100);
-int r,g,b;
-int brightness=100;
-float radius=0;
-float speed;
-bool showRocket;
-bool exploded;
-float xInc, yInc, zInc;
-float rocketX, rocketY, rocketZ;
-float launchTime;
-int maxSize;
+// int centerX, centerY, centerZ;
+// int launchX, launchZ;
+// Color rocketColor(255,150,100);
+// int r,g,b;
+// int brightness=100;
+// float radius=0;
+// float speed;
+// bool showRocket;
+// bool exploded;
+// float xInc, yInc, zInc;
+// float rocketX, rocketY, rocketZ;
+// float launchTime;
+// int maxSize;
 
-void prepRocket()
-{
-  radius=0;
-  centerX=rand()%8;
-  centerY=rand()%8;
-  centerZ=rand()%8;
-  r=rand()%brightness;
-  g=rand()%brightness;
-  b=rand()%brightness;
-  launchX=rand()%8;
-  launchZ=rand()%8;
-  rocketX=launchX;
-  rocketY=0;
-  rocketZ=launchZ;
-  launchTime=15+rand()%25;
-  xInc=(centerX-rocketX)/launchTime;
-  yInc=(centerY-rocketY)/launchTime;
-  zInc=(centerZ-rocketZ)/launchTime;
-  showRocket=true;
-  exploded=false;
-  speed=0.20;
-  maxSize=8;
-}
+// void prepRocket()
+// {
+//   radius=0;
+//   centerX=rand()%8;
+//   centerY=rand()%8;
+//   centerZ=rand()%8;
+//   r=rand()%brightness;
+//   g=rand()%brightness;
+//   b=rand()%brightness;
+//   launchX=rand()%8;
+//   launchZ=rand()%8;
+//   rocketX=launchX;
+//   rocketY=0;
+//   rocketZ=launchZ;
+//   launchTime=15+rand()%25;
+//   xInc=(centerX-rocketX)/launchTime;
+//   yInc=(centerY-rocketY)/launchTime;
+//   zInc=(centerZ-rocketZ)/launchTime;
+//   showRocket=true;
+//   exploded=false;
+//   speed=0.20;
+//   maxSize=8;
+// }
 
-float distance(float x, float y, float z, float x1, float y1, float z1)
-{
-  return(sqrt(pow(x-x1,2)+pow(y-y1,2)+pow(z-z1,2)));
-}
+// float distance(float x, float y, float z, float x1, float y1, float z1)
+// {
+//   return(sqrt(pow(x-x1,2)+pow(y-y1,2)+pow(z-z1,2)));
+// }
 
-void fireworks_loop()
-{
-  cube.background(black);  //clear the cube for each frame
+// void fireworks_loop()
+// {
+//   cube.background(black);  //clear the cube for each frame
 
-  if(showRocket)
-    cube.shell(rocketX, rocketY, rocketZ,.05, rocketColor);
+//   if(showRocket)
+//     cube.shell(rocketX, rocketY, rocketZ,.05, rocketColor);
 
-  if(exploded)
-    {
-      Color fireworksColor=Color(r,g,b);
+//   if(exploded)
+//     {
+//       Color fireworksColor=Color(r,g,b);
 
-      //make the color fade to black as the firework gets larger
-      if(r>1)
-        r-=2;
-      if(g>1)
-        g-=2;
-      if(b>1)
-        b-=2;
+//       //make the color fade to black as the firework gets larger
+//       if(r>1)
+//         r-=2;
+//       if(g>1)
+//         g-=2;
+//       if(b>1)
+//         b-=2;
 
-      cube.shell(rocketX, rocketY, rocketZ,radius, fireworksColor);
-      radius+=speed;  //the sphere gets bigger
-    }
+//       cube.shell(rocketX, rocketY, rocketZ,radius, fireworksColor);
+//       radius+=speed;  //the sphere gets bigger
+//     }
 
-  //if the rocket hasn't exploded yet, increment its position
-  if(showRocket)
-    {
-      rocketX+=xInc;
-      rocketY+=yInc;
-      rocketZ+=zInc;
-    }
+//   //if the rocket hasn't exploded yet, increment its position
+//   if(showRocket)
+//     {
+//       rocketX+=xInc;
+//       rocketY+=yInc;
+//       rocketZ+=zInc;
+//     }
 
-  //if our firework gets too large, launch another rocket to another point
-  if(radius>maxSize)
-    prepRocket();
+//   //if our firework gets too large, launch another rocket to another point
+//   if(radius>maxSize)
+//     prepRocket();
 
-  if(abs(distance(centerX,centerY,centerZ,rocketX, rocketY, rocketZ)-radius)<2)
-    {
-      showRocket=false;
-      exploded=true;
-    }
+//   if(abs(distance(centerX,centerY,centerZ,rocketX, rocketY, rocketZ)-radius)<2)
+//     {
+//       showRocket=false;
+//       exploded=true;
+//     }
 
-  cube.show();  //send the data to the cube
-}
+//   cube.show();  //send the data to the cube
+// }
 
