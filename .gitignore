@@ -5,3 +5,4 @@ build/
 
 beta-cube-library/
 spark-firmware/
+.DS_Store
