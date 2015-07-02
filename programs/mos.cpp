@@ -5,9 +5,6 @@
 #include "beta-cube-library.h"
 #include "seq.h"
 
-//void prepRocket();
-//void fireworks_loop();
-
 Cube cube;
 Seq* seq;
 
@@ -112,7 +109,7 @@ public:
 
 private:
   static const int NUM_STARS = 75;
-  static const int COLLAPSE_START_PERCENT = 75;
+  static const int COLLAPSE_START_PERCENT = 90;
   static const int COLLAPSE_X = 0;
   static const int COLLAPSE_Y = 0;
   static const int COLLAPSE_Z = 7;
@@ -312,39 +309,6 @@ private:
 };
 
 
-class RedLight : public Task {
-public:
-  RedLight(const String& name, long delayMillis) : Task(name, delayMillis) {
-  }
-
-  virtual void loop(long elapsed, double percentDone) {
-    cube.setVoxel(0, 7, 7, red);
-    cube.show();
-  }
-};
-
-class GreenLight : public Task {
-public:
-  GreenLight(const String& name, long delayMillis) : Task(name, delayMillis) {
-  }
-
-  virtual void loop(long elapsed, double percentDone) {
-    cube.setVoxel(0, 7, 7, green);
-    cube.show();
-  }
-};
-
-class YellowLight : public Task {
-public:
-  YellowLight(long delayMillis) : Task("YellowLight", delayMillis) {
-  }
-
-  virtual void loop(long elapsed, double percentDone) {
-    cube.setVoxel(0, 7, 7, yellow);
-    cube.show();
-  }
-};
-
 class ClearTask : public Task {
 public:
     ClearTask(long delayMillis) : Task("ClearTask", delayMillis) {
@@ -362,6 +326,8 @@ public:
     }
 
     virtual void loop(long elapsed, double percentDone) {
+        cube.background(black);
+
         cube.setVoxel(3, 7, 7, blue);
         cube.show();
     }
@@ -373,6 +339,8 @@ public:
     }
 
     virtual void loop(long elapsed, double percentDone) {
+        cube.background(black);
+
         cube.line(3, 7, 7, 3, 7 - 7 * percentDone, 7, blue);
         cube.show();
     }
@@ -458,22 +426,58 @@ public:
     }
 };
 
-Task* tasks[] = {
-  new StarField(6000 / 5),
-  new Fireworks(10000),
-  
-  /*
-  new BlueInCenter(200),
-  new BlueLine(400),
-  new BlueSquare(400),
-  new DelayTask(150),
-  new BlueCube(300),
-  new DelayTask(150),
-  new WhiteCube(400),
-  new Cylon(5000 / 5),
-  new ClearTask(100),
-  */
+// Set this to CYLON or TWINKLE to choose the desired sequence.
+#define CYLON
 
+Task* tasks[] = {
+
+#ifdef TWINKLE
+  // This is the sequence for Twinkle cube.
+  new StarField(10600),  // approx 30 secs on Twinkle cube
+  new Fireworks(39000),  // approx 60 secs on Twinkle cube
+#endif
+
+#ifdef CYLON
+  // This is the sequence for the Cylon cube.
+  new BlueInCenter(8333),  // approx 30 secs on Cylon cube
+
+  new BlueLine(600),       // total of approx 20 secs
+  new BlueLine(600),
+  new BlueLine(600),
+  new BlueLine(600),
+  new BlueLine(600),
+  new BlueLine(600),
+  new BlueLine(600),
+  new BlueLine(600),
+  new BlueLine(600),
+  new BlueLine(600),
+
+  new BlueSquare(600),     // total of approx 20 secs
+  new BlueSquare(600),
+  new BlueSquare(600),
+  new BlueSquare(600),
+  new BlueSquare(600),
+  new BlueSquare(600),
+  new BlueSquare(600),
+  new BlueSquare(600),
+  new BlueSquare(600),
+  new BlueSquare(600),
+
+  new BlueCube(600),       // total of approx 20 secs
+  new BlueCube(600),
+  new BlueCube(600),
+  new BlueCube(600),
+  new BlueCube(600),
+  new BlueCube(600),
+  new BlueCube(600),
+  new BlueCube(600),
+  new BlueCube(600),
+  new BlueCube(600),
+
+  new WhiteCube(3000),    // approx 10 secs
+  new Cylon(6250),        // approx 30 secs
+#endif
+  
   // The nullptr means that the sequence is done.
   // Don't forget it, or it will crash!!!
   nullptr
@@ -485,8 +489,6 @@ void setup() {
 
   seq = new Seq(tasks);
   seq->setup();
-
-  //  prepRocket();
 }
 
 void loop() {
