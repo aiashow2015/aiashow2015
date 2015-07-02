@@ -4,7 +4,6 @@
 #include "application.h"
 #include "beta-cube-library.h"
 #include "seq.h"
-#include "fireworks.h"
 
 //void prepRocket();
 //void fireworks_loop();
