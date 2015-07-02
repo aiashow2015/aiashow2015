@@ -12,19 +12,19 @@ Cube cube;
 Seq* seq;
 
 static const Color OColor(0x9b, 0xb0, 0xff);
-static const Color ODark(0x74, 0x84, 0xbf);
+static const Color ODark(0x4d, 0x58, 0x7f);
 static const Color BColor(0xaa, 0xbf, 0xff);
-static const Color BDark(0x7f, 0x8f, 0xbf);
+static const Color BDark(0x54, 0x5f, 0x7f);
 static const Color AColor(0xca, 0xd7, 0xff);
-static const Color ADark(0x97, 0xa1, 0xbf);
+static const Color ADark(0x64, 0x6b, 0x7f);
 static const Color FColor(0xf8, 0xf7, 0xff);
-static const Color FDark(0xba, 0xb9, 0xbf);
+static const Color FDark(0x7c, 0x7b, 0x7f);
 static const Color GColor(0xff, 0xf4, 0xea);
-static const Color GDark(0xbf, 0xb7, 0xaf);
+static const Color GDark(0x7f, 0x7a, 0x75);
 static const Color KColor(0xff, 0xd2, 0xa1);
-static const Color KDark(0xbf, 0x9d, 0x7a);
+static const Color KDark(0x7f, 0x68, 0x51);
 static const Color MColor(0xff, 0xcc, 0x6f);
-static const Color MDark(0xbf, 0x99, 0x53);
+static const Color MDark(0x7f, 0x66, 0x38);
 
 struct StarDesc {
   const Color* color;     // Color to represent this type of star.
@@ -459,22 +459,24 @@ public:
 };
 
 Task* tasks[] = {
-  //  new Cylon(5000 / 5),
-  //  new StarField(6000 / 5),
-  //  new Fireworks(10000),
-   new BlueInCenter(200),
-   new BlueLine(400),
-   new BlueSquare(400),
-   new DelayTask(150),
-   new BlueCube(300),
-    // new YellowLight(100),
-   new DelayTask(150),
-   new WhiteCube(400),
-     new ClearTask(100),
+  new StarField(6000 / 5),
+  new Fireworks(10000),
+  
+  /*
+  new BlueInCenter(200),
+  new BlueLine(400),
+  new BlueSquare(400),
+  new DelayTask(150),
+  new BlueCube(300),
+  new DelayTask(150),
+  new WhiteCube(400),
+  new Cylon(5000 / 5),
+  new ClearTask(100),
+  */
 
-    // The nullptr means that the sequence is done.
-    // Don't forget it, or it will crash!!!
-    nullptr
+  // The nullptr means that the sequence is done.
+  // Don't forget it, or it will crash!!!
+  nullptr
 };
 
 void setup() {
@@ -489,98 +491,6 @@ void setup() {
 
 void loop() {
   if (!seq->loop()) {
-    //    fireworks_loop();
   }
 }
-
-/* ------------------------------------------------------------------------ */
-/* FIREWORKS STUFF */
-/* ------------------------------------------------------------------------ */
-
-// int centerX, centerY, centerZ;
-// int launchX, launchZ;
-// Color rocketColor(255,150,100);
-// int r,g,b;
-// int brightness=100;
-// float radius=0;
-// float speed;
-// bool showRocket;
-// bool exploded;
-// float xInc, yInc, zInc;
-// float rocketX, rocketY, rocketZ;
-// float launchTime;
-// int maxSize;
-
-// void prepRocket()
-// {
-//   radius=0;
-//   centerX=rand()%8;
-//   centerY=rand()%8;
-//   centerZ=rand()%8;
-//   r=rand()%brightness;
-//   g=rand()%brightness;
-//   b=rand()%brightness;
-//   launchX=rand()%8;
-//   launchZ=rand()%8;
-//   rocketX=launchX;
-//   rocketY=0;
-//   rocketZ=launchZ;
-//   launchTime=15+rand()%25;
-//   xInc=(centerX-rocketX)/launchTime;
-//   yInc=(centerY-rocketY)/launchTime;
-//   zInc=(centerZ-rocketZ)/launchTime;
-//   showRocket=true;
-//   exploded=false;
-//   speed=0.20;
-//   maxSize=8;
-// }
-
-// float distance(float x, float y, float z, float x1, float y1, float z1)
-// {
-//   return(sqrt(pow(x-x1,2)+pow(y-y1,2)+pow(z-z1,2)));
-// }
-
-// void fireworks_loop()
-// {
-//   cube.background(black);  //clear the cube for each frame
-
-//   if(showRocket)
-//     cube.shell(rocketX, rocketY, rocketZ,.05, rocketColor);
-
-//   if(exploded)
-//     {
-//       Color fireworksColor=Color(r,g,b);
-
-//       //make the color fade to black as the firework gets larger
-//       if(r>1)
-//         r-=2;
-//       if(g>1)
-//         g-=2;
-//       if(b>1)
-//         b-=2;
-
-//       cube.shell(rocketX, rocketY, rocketZ,radius, fireworksColor);
-//       radius+=speed;  //the sphere gets bigger
-//     }
-
-//   //if the rocket hasn't exploded yet, increment its position
-//   if(showRocket)
-//     {
-//       rocketX+=xInc;
-//       rocketY+=yInc;
-//       rocketZ+=zInc;
-//     }
-
-//   //if our firework gets too large, launch another rocket to another point
-//   if(radius>maxSize)
-//     prepRocket();
-
-//   if(abs(distance(centerX,centerY,centerZ,rocketX, rocketY, rocketZ)-radius)<2)
-//     {
-//       showRocket=false;
-//       exploded=true;
-//     }
-
-//   cube.show();  //send the data to the cube
-// }
 
