@@ -439,40 +439,40 @@ Task* tasks[] = {
 
 #ifdef CYLON
   // This is the sequence for the Cylon cube.
-  new BlueInCenter(8333),  // approx 30 secs on Cylon cube
+  new BlueInCenter(4000),  // approx 15 secs on Cylon cube
 
-  new BlueLine(600),       // total of approx 20 secs
-  new BlueLine(600),
-  new BlueLine(600),
-  new BlueLine(600),
-  new BlueLine(600),
-  new BlueLine(600),
-  new BlueLine(600),
-  new BlueLine(600),
-  new BlueLine(600),
-  new BlueLine(600),
+  new BlueLine(300),       // total of approx 10 secs
+  new BlueLine(300),
+  new BlueLine(300),
+  new BlueLine(300),
+  new BlueLine(300),
+  new BlueLine(300),
+  new BlueLine(300),
+  new BlueLine(300),
+  new BlueLine(300),
+  new BlueLine(300),
 
-  new BlueSquare(600),     // total of approx 20 secs
-  new BlueSquare(600),
-  new BlueSquare(600),
-  new BlueSquare(600),
-  new BlueSquare(600),
-  new BlueSquare(600),
-  new BlueSquare(600),
-  new BlueSquare(600),
-  new BlueSquare(600),
-  new BlueSquare(600),
+  new BlueSquare(300),     // total of approx 10 secs
+  new BlueSquare(300),
+  new BlueSquare(300),
+  new BlueSquare(300),
+  new BlueSquare(300),
+  new BlueSquare(300),
+  new BlueSquare(300),
+  new BlueSquare(300),
+  new BlueSquare(300),
+  new BlueSquare(300),
 
-  new BlueCube(600),       // total of approx 20 secs
-  new BlueCube(600),
-  new BlueCube(600),
-  new BlueCube(600),
-  new BlueCube(600),
-  new BlueCube(600),
-  new BlueCube(600),
-  new BlueCube(600),
-  new BlueCube(600),
-  new BlueCube(600),
+  new BlueCube(300),       // total of approx 10 secs
+  new BlueCube(300),
+  new BlueCube(300),
+  new BlueCube(300),
+  new BlueCube(300),
+  new BlueCube(300),
+  new BlueCube(300),
+  new BlueCube(300),
+  new BlueCube(300),
+  new BlueCube(300),
 
   new WhiteCube(3000),    // approx 10 secs
   new Cylon(6250),        // approx 30 secs
