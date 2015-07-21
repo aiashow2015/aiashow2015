@@ -39,21 +39,28 @@ Homebrew works best when you install it in the default location, /usr/local. But
 4. Then paste it into the Terminal window and hit return. 
 5. When this is done, type 'brew' and hit return. If it prints out an "Example usage:" message, you can skip the rest of this. If it says "command not found," then proceed with the next steps. 
 6. In the terminal, type (or copy/paste) the following:
-> <pre><code>echo 'export PATH=/usr/local/bin:$PATH' >> ~/.bash_profile</code></pre>
-7. Now, close that Terminal window, and open a new one. 
-8. Type 'brew' and hit return. Make sure you get the usage message. Otherwise, you've done something wrong.
+<pre><code>export PATH=/usr/local/bin:$PATH'</code></pre>
+7. Type 'brew' and hit return. Make sure you get the usage message. Otherwise, you've done something wrong.
 
 ### Now, install the dependencies using homebrew
 
-In this step, you will use your new Homebrew installation to install (almost) all of the dependencies which you need.
+In this step, you will use your new Homebrew installation to install all of the dependencies which you need.
 
 <pre><code>brew tap PX4/homebrew-px4
 brew update
 brew upgrade
-brew install git dfu-util node
+brew install git dfu-util node 
 brew install gcc-arm-none-eabi
 npm install -g particle-cli
 </code></pre>
+
+### Set up your path to find the new stuff you've installed
+
+The computer looks in certain places to find the commands you type. In this step, we describe the locations where the new dependencies are.
+
+1. Type (or copy/paste) the following into your Terminal window:
+<pre><code> 
+
 
 ### Clone the repo and run the setup script.
 
@@ -61,9 +68,12 @@ We are getting so close. Now we just have to copy down the aiashow source code a
 
 <pre><code>git clone https://github.com/aiashow2015/aiashow2015.git
 cd aiashow2015
-./setup  # This script installs the firmware repos and mods them for our environment.
-make
+cat < conf/bashpash.sh >> $HOME/.profile
 </code></pre>
+
+Now, close your Terminal window and open a new one. 
+
+Type <code>make</code>
 
 Assuming that everything ran without error, you should now see a file called 'mos.bin' in that directory. (Type 'ls' to see the files in your directory.) Congratulations! You've just built your first firmware for the cube!
 
