@@ -427,7 +427,7 @@ public:
 };
 
 // Set this to CYLON or TWINKLE to choose the desired sequence.
-#define CYLON
+#define TWINKLE
 
 Task* tasks[] = {
 
@@ -483,7 +483,33 @@ Task* tasks[] = {
   nullptr
 };
 
+#ifdef TWINKLE
+//Task* twinkleTasks[] = {
+//  new StarField(10000),
+//  nullptr
+//};
+
+int twinkleFunc(String command) {
+  //  if (seq) {
+  //    delete(seq);
+  //  }
+  //  seq = new Seq(twinkleTasks);
+  //  return 0;
+  return 5;
+}
+
+int fireworksFunc(String command) {
+  return 0;
+}
+
+#endif  // TWINKLE
+
 void setup() {
+#ifdef TWINKLE
+  Spark.function("twinkle", twinkleFunc);
+  Spark.function("fireworks", fireworksFunc);
+#endif  // TWINKLE
+  
   cube.begin();
   cube.background(black);
 
