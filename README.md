@@ -54,13 +54,6 @@ brew install gcc-arm-none-eabi
 npm install -g particle-cli
 </code></pre>
 
-### Set up your path to find the new stuff you've installed
-
-The computer looks in certain places to find the commands you type. In this step, we describe the locations where the new dependencies are.
-
-1. Type (or copy/paste) the following into your Terminal window:
-<pre><code> 
-
 
 ### Clone the repo and run the setup script.
 
