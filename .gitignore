@@ -2,6 +2,9 @@
 *.bin
 
 build/
+build_tmp/
+core/
+photon/
 
 beta-cube-library/
 spark-firmware/
