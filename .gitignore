@@ -5,6 +5,8 @@ build/
 build_tmp/
 core/
 photon/
+core-bin/
+photon-bin/
 
 beta-cube-library/
 spark-firmware/

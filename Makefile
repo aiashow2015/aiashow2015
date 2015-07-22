@@ -7,7 +7,7 @@ SELF_DIR := $(dir $(lastword $(MAKEFILE_LIST)))
 PROGRAM_DIR = $(SELF_DIR)programs/
 LIB_DIR = $(SELF_DIR)lib/
 TMP_DIR = $(SELF_DIR)build_tmp/
-BUILD_DIR = $(SELF_DIR)$(PLATFORM)/
+BUILD_DIR = $(SELF_DIR)$(PLATFORM)-bin/
 
 LIB_SOURCES = $(wildcard $(LIB_DIR)*)
 
