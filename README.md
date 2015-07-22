@@ -66,9 +66,15 @@ cat < conf/bashpash.sh >> $HOME/.profile
 
 Now, close your Terminal window and open a new one. 
 
-Type <code>make</code>
+Type <pre><code>cd aiashow2015</code></pre>
 
-Assuming that everything ran without error, you should now see a file called 'mos.bin' in that directory. (Type 'ls' to see the files in your directory.) Congratulations! You've just built your first firmware for the cube!
+This command changes your current working directory to the "aiashow2015" directory. You will need to do this for everything from now on, so I'm going to assume you've done it and stop telling you about it. If you're ever unsure, you can type <code>pwd</code> to find out what directory you are in.
+
+<pre><code>make</code></pre>
+
+Assuming that everything ran without error, you should now see a file called 'mos.bin' in the 'core-bin' directory. (Or 'photon-bin' if you're building for the photon. (Type <code>ls</code> to see the files in your directory. Type <code>ls core-bin</code> to see the files in the core-bin directory.) 
+
+Congratulations! You've just built your first firmware for the cube!
 
 ## How to build and deploy cool demos on the cube.
 
