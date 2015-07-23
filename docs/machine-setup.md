@@ -2,17 +2,14 @@
 
 This document will walk you through the steps to set up your machine for L3D
 cube development with the aiashow2015 demos. You will need to do these steps
-once per machine on which you wish to build the aiashow2015 code.
+once per machine.
 
 The steps are:
 
 1. (Optional) Upgrade to Yosemite. (You only need to do this if you want to
 run the cube simulator.) 
 2. Install XCode.
-3. Install Homebrew (Semi-optional. If you have another package manager
-installed, you can use that as long as it has all of the packages that we
-need. We will assume that you are using Homebrew in the rest of the
-documentation.) 
+3. Install Homebrew (Semi-optional. See below.)
 4. Install the dependencies using Homebrew.
 
 
@@ -59,7 +56,7 @@ all set.
 Homebrew is a Mac OS "package manager." This just means that it will do all of
 the annoying parts of installing a whole slew of free software from the
 internet. There are several of them. Homebrew is my favorite. (You can use any
-one that you want as long as you install all if the right packages.)
+one that you want as long as you install all of the right packages.)
 
 Homebrew works best when you install it in the default location,
 /usr/local. But sometimes. you might not have write permission there, so you
@@ -73,8 +70,7 @@ Dock so that you can find it quickly next time.
 2. Go to http://brew.sh.
 3. At the top of the Homebrew page, there is a single line of code that begins
 with 'ruby -e'. Copy that. (This will install into /usr/local. If you need it
-somewhere else, check out the next appendix at the bottom of these
-instructions.)
+somewhere else, check out the appendix at the bottom of these instructions.)
 4. Then paste it into the Terminal window and hit return.
 5. When this is done, type 'brew' and hit return. If it prints out an "Example
 usage:" message, you can skip the rest of this. If it says "command not
@@ -99,7 +95,7 @@ npm install -g particle-cli
 </code></pre>
 
 
-## Fix your path (#fix-your-path)
+## Fix your path <a name="fix-your-path"></a>
 
 _You can only do this step after you have [setup your
 repository](repo-setup.md)._ Come back here and do this when you are done with

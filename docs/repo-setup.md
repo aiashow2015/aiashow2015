@@ -46,14 +46,32 @@ You can find out what directory you are in at any time by typing
 Now go [set up git](#git-config).
 
 
-## Clone the repo (ssh version) (#ssh-setup)
+## Set up your ssh keys <a name="complex"></a>
+
+This is definitely the way to go. You have to follow these instructions once
+per machine, but your life will be greatly improved in the future. They're
+really not hard, but they do require some attention to detail.
+
+Github has written better instructions for this than I could ever hope to. Go
+[here](https://help.github.com/articles/generating-ssh-keys/#platform-mac) and
+do what they tell you.
+
+After you have finished this step, go to the [alternative instructions for
+cloning your repo](#ssh-setup).
+
+
+
+## Clone the repo (ssh version) <a name="ssh-setup"></a>
+
+If you have followed the steps to [set up your git keys](#complex), then you
+can do this.
 
 <pre><code>git clone git@github.com:aiashow2015/aiashow2015.git
 cd aiashow2015
 </code></pre>
 
 Now you are in the "working directory" for the aiashow project. Nearly
-everything else you do assumes that you have are in this directory, so be sure
+everything else you do assumes that you are in this directory, so be sure
 to <code>cd</code> back to this directory every time you start work again.
 
 You can find out what directory you are in at any time by typing
@@ -62,7 +80,7 @@ You can find out what directory you are in at any time by typing
 Now go [set up git](#git-config).
 
 
-## Set up your git configuration (#git-config)
+## Set up your git configuration <a name="git-config"></a>
 
 Whew. We're almost done. Just a couple more details:
 
@@ -78,17 +96,4 @@ shouldn't. (But in that case, you probably don't need these walkthroughs.)
 Now that we have a repo, we can do the [final little piece of machine setup](machine-setup.md#fix-your-path). Go
 do it now.
 
-
-## Set up your ssh keys (#complex)
-
-This is definitely the way to go. You have to follow these instructions once
-per machine, but your life will be greatly improved in the future. They're
-really not hard, but they do require some attention to detail.
-
-Github has written better instructions for this than I could ever hope to. Go
-[here](https://help.github.com/articles/generating-ssh-keys/#platform-mac) and
-do what they tell you.
-
-After you have finished this step, go to the [alternative instructions for
-cloning your repo](#ssh-setup).
 

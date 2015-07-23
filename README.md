@@ -15,8 +15,10 @@ similar).
 You will need to:
 
 1. Set up [your machine](docs/machine-setup.md).
-2. Now, set up [github and your repo](docs/repo-setup.md).
-2. Everything else in this document.
+2. Set up [github and your repo](docs/repo-setup.md). 
+3. Set up your [path](docs/machine-setup.md#fix-your-path).
+   (You may have done this already.)  
+4. Everything else in this document.
 
 
 # Ignore everything below this. It's obsolete, and this document is a work in progress.
