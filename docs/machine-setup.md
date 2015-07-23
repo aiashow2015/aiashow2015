@@ -97,3 +97,13 @@ brew install git dfu-util node
 brew install gcc-arm-none-eabi
 npm install -g particle-cli
 </code></pre>
+
+
+## Fix your path (#fix-your-path)
+
+_You can only do this step after you have [setup your
+repository](repo-setup.md)._ Come back here and do this when you are done with
+that step.
+
+
+cat < conf/bashpash.sh >> $HOME/.profile

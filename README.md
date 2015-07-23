@@ -15,7 +15,12 @@ similar).
 You will need to:
 
 1. Set up [your machine](docs/machine-setup.md).
+2. Now, set up [github and your repo](docs/repo-setup.md).
 2. Everything else in this document.
+
+
+# Ignore everything below this. It's obsolete, and this document is a work in progress.
+
 
 
 
@@ -25,7 +30,6 @@ We are getting so close. Now we just have to copy down the aiashow source code a
 
 <pre><code>git clone https://github.com/aiashow2015/aiashow2015.git
 cd aiashow2015
-cat < conf/bashpash.sh >> $HOME/.profile
 </code></pre>
 
 Now, close your Terminal window and open a new one. 
