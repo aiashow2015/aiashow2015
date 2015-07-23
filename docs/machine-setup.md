@@ -49,7 +49,7 @@ search for XCode.
 
 When you come back from your snack, XCode should be installed.
 
-__Be sure to run XCode at least once before moving to the next step.__ Agree
+_Be sure to run XCode at least once before moving to the next step._ Agree
 to the licensing stuff. When it finally says "Welcome to XCode," you should be
 all set.
 
@@ -90,8 +90,7 @@ you've done something wrong.
 In this step, you will use your new Homebrew installation to install all of
 the dependencies which you need.
 
-<pre><code>
-brew tap PX4/homebrew-px4
+<pre><code>brew tap PX4/homebrew-px4
 brew update
 brew upgrade
 brew install git dfu-util node 
