@@ -40,7 +40,7 @@ Yosemite." Install/upgrade it by following the instructions.
 3. Go have some coffee. This will take a while.
 
 
-### Install XCode
+## Install XCode
 
 1. Once that Yosemite upgrade has completed, go back to the AppStore and
 search for XCode.  
@@ -49,7 +49,52 @@ search for XCode.
 
 When you come back from your snack, XCode should be installed.
 
-_Be sure to run XCode at least once before moving to the next step._ Agree to
-the licencing stuff. When it finally says "Welcome to XCode," you should be
+__Be sure to run XCode at least once before moving to the next step.__ Agree
+to the licensing stuff. When it finally says "Welcome to XCode," you should be
 all set.
 
+
+## Install Homebrew
+
+Homebrew is a Mac OS "package manager." This just means that it will do all of
+the annoying parts of installing a whole slew of free software from the
+internet. There are several of them. Homebrew is my favorite. (You can use any
+one that you want as long as you install all if the right packages.)
+
+Homebrew works best when you install it in the default location,
+/usr/local. But sometimes. you might not have write permission there, so you
+can install it in your home directory too. If you can, though, put it in the
+default place. It's much more efficient, since you can use the pre-built
+binaries that Homebrew makes available.
+
+1. Open the Terminal app. (Cmd-Shift-A. Look for Terminal. Double-click.) If
+you're going to be doing a lot of this, I recommend keeping Terminal in the
+Dock so that you can find it quickly next time.
+2. Go to http://brew.sh.
+3. At the top of the Homebrew page, there is a single line of code that begins
+with 'ruby -e'. Copy that. (This will install into /usr/local. If you need it
+somewhere else, check out the next appendix at the bottom of these
+instructions.)
+4. Then paste it into the Terminal window and hit return.
+5. When this is done, type 'brew' and hit return. If it prints out an "Example
+usage:" message, you can skip the rest of this. If it says "command not
+found," then proceed with the next steps.
+6. In the terminal, type (or copy/paste) the following:
+<pre><code>export PATH=/usr/local/bin:$PATH'</code></pre>
+7. Type 'brew' and hit return. Make sure you get the usage message. Otherwise,
+you've done something wrong.
+
+
+## Install dependencies
+
+In this step, you will use your new Homebrew installation to install all of
+the dependencies which you need.
+
+<pre><code>
+brew tap PX4/homebrew-px4
+brew update
+brew upgrade
+brew install git dfu-util node 
+brew install gcc-arm-none-eabi
+npm install -g particle-cli
+</code></pre>
