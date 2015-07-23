@@ -25,16 +25,15 @@ all:
 $(PROGRAM_BINNAMES): %.bin : $(BUILD_DIR)%.bin
 	echo $@
 
-$(PROGRAM_BINS) : $(BUILD_DIR)%.bin : $(PROGRAM_DIR)%.cpp $(LIB_SOURCES) cubelibs | $(TMP_DIR) $(BUILD_DIR)
+$(PROGRAM_BINS) : $(BUILD_DIR)%.bin : $(PROGRAM_DIR)%.cpp $(LIB_SOURCES) cubelibs | $(BUILD_DIR)
+	rm -rf $(TMP_DIR)
+	mkdir $(TMP_DIR)
 	cp cubelibs/* $(TMP_DIR)
 	cp $(LIB_DIR)/* $(TMP_DIR)
 	$(eval PROGRAM_NAME=$(notdir $(basename $@)))
 	echo $(PROGRAM_NAME)
 	cp $(PROGRAM_DIR)$(PROGRAM_NAME).cpp $(TMP_DIR)
 	particle compile $(PLATFORM) $(TMP_DIR) --saveTo $@
-
-$(TMP_DIR):
-	mkdir $(TMP_DIR)
 
 $(BUILD_DIR):
 	mkdir $(BUILD_DIR)
