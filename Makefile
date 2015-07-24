@@ -46,4 +46,5 @@ cubelibs:
 # Start off from a completely clean 
 clean:
 	-rm -rf $(TMP_DIR)
-	-rm -rf $(BUILD_DIR)
+	-rm -rf core-bin/
+	-rm -rf photon-bin/

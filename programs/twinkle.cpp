@@ -3,9 +3,9 @@
 
 #include "application.h"
 #include "beta-cube-library.h"
+#include "cube.h"
 #include "seq.h"
 
-Cube cube;
 Seq* seq;
 
 static const Color OColor(0x9b, 0xb0, 0xff);

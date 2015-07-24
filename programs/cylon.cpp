@@ -3,9 +3,9 @@
 
 #include "application.h"
 #include "beta-cube-library.h"
+#include "cube.h"
 #include "seq.h"
 
-Cube cube;
 Seq* seq;
 
 class Cylon : public Task {
