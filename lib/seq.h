@@ -13,7 +13,8 @@ class Seq;
 class Task {
 
  protected:
- Task(const String &name, long durationMillis) : name_(name), durationMillis_(durationMillis) {};
+  Task(const String &name, long durationMillis) : name_(name),
+						  durationMillis_(durationMillis) {};
 
   // Subclasses should feel free to override this method, but they MUST call the
   // method in the superclass.
@@ -61,7 +62,7 @@ public:
   Task* curr_task;
   int curr_idx;
     
-    bool repeat_;
+  bool repeat_;
 };
 
 class DelayTask : public Task {
