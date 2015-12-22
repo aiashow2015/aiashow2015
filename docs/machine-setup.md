@@ -102,4 +102,4 @@ repository](repo-setup.md)._ Come back here and do this when you are done with
 that step.
 
 
-cat < conf/bashpash.sh >> $HOME/.profile
+cat < conf/bashpath.sh >> $HOME/.profile
