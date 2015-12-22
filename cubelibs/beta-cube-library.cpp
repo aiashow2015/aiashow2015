@@ -1,8 +1,6 @@
 #include <math.h>
 #include "beta-cube-library.h"
 
-SYSTEM_MODE(SEMI_AUTOMATIC);
-
 /** Construct a new cube.
   @param s Size of one side of the cube in number of LEDs.
   @param mb Maximum brightness value. Used to prevent the LEDs from drawing too much current (which causes the colors to distort).
@@ -36,15 +34,15 @@ Cube::Cube() : \
 
 /** Initialization of cube resources and environment. */
 void Cube::begin(void) {
+  Serial.begin(115200);
   strip.begin();
   //initialize Spark variables
   center=Point((size-1)/2,(size-1)/2,(size-1)/2);  
-  Spark.variable("IPAddress", this->localIP, STRING);
+  Particle.variable("IPAddress", this->localIP, STRING);
   
   this->initButtons();
   this->udp.begin(STREAMING_PORT);
   this->updateNetworkInfo();
-  Spark.connect();
 }
 
 /** Set a voxel at a position to a color.
@@ -376,6 +374,7 @@ Color Cube::lerpColor(Color a, Color b, int val, int minVal, int maxVal)
 void Cube::show()
 {
   strip.show();
+    checkCloudButton();
 }
 
 /** Initialize online/offline switch and the join wifi button */
@@ -388,43 +387,15 @@ void Cube::initButtons() {
   if(!digitalRead(MODE))
     WiFi.listen();
 
-  //a.k.a. onlinePressed is HIGH when the switch is set to 'online' and LOW when the switch is set to 'offline'
-  this->onlinePressed = !digitalRead(INTERNET_BUTTON);
-
-  if(onlinePressed)
-    Spark.connect();
-
-  void (Cube::*check)(void) = &Cube::onlineOfflineSwitch;
-  attachInterrupt(INTERNET_BUTTON, (void (*)())check, CHANGE);
-
-  void (Cube::*wifi)(void) = &Cube::joinWifi;
-  attachInterrupt(MODE, (void (*)())wifi, FALLING);
-
-  
-
 }
 
-/** react to a change of the online/offline switch */
-void Cube::onlineOfflineSwitch() {
-  // if the 'connect to cloud' button is pressed, try to connect to wifi.  
-  // otherwise, run the program
 
-  // onlinePressed is HIGH when the switch is _not_ connected and LOW when the switch is connected
-  // a.k.a. onlinePressed is HIGH when the switch is set to 'online' and LOW when the switch is set to 'offline'
-  this->onlinePressed = !digitalRead(INTERNET_BUTTON);
-
-  if((!this->onlinePressed) && (this->lastOnline)) {
-    //marked as 'online'
-    this->lastOnline = this->onlinePressed;
-    Spark.connect();
-  } else if((this->onlinePressed) && (!this->lastOnline)) {
-    // marked as 'offline'
-    this->lastOnline = this->onlinePressed;
-    Spark.disconnect();
-  }
-
-  this->lastOnline = this->onlinePressed;
-
+//checks to see if the 'online/offline' switch is switched
+void Cube::checkCloudButton()
+{
+  //if the 'connect to cloud' button is pressed, try to connect to wifi.  
+  if(!digitalRead(MODE))
+    WiFi.listen();
 }
 
 void Cube::joinWifi()
